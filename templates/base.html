@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Intelligence Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --aws-dark-blue: #232f3e;
+            --aws-orange: #ff9900;
+            --aws-light-gray: #f2f3f3;
+            --aws-dark-gray: #545b64;
+        }
+        
+        body {
+            font-family: 'Amazon Ember', Arial, sans-serif;
+            background-color: #fafafa;
+        }
+        
+        /* Header Styles */
+        .navbar-aws {
+            background-color: var(--aws-dark-blue);
+            height: 60px;
+            padding: 0 20px;
+        }
+        
+        .navbar-brand {
+            color: white;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        
+        .nav-link {
+            color: white !important;
+            padding: 0.5rem 1rem;
+        }
+        
+        /* Sidebar Styles */
+        .sidebar {
+            background-color: white;
+            width: 240px;
+            min-height: calc(100vh - 60px);
+            border-right: 1px solid #ddd;
+            position: fixed;
+            padding-top: 20px;
+        }
+        
+        .sidebar-item {
+            padding: 10px 20px;
+            color: var(--aws-dark-gray);
+            cursor: pointer;
+            border-left: 3px solid transparent;
+        }
+        
+        .sidebar-item:hover {
+            background-color: var(--aws-light-gray);
+        }
+        
+        .sidebar-item.active {
+            background-color: #e9f5ff;
+            border-left: 3px solid var(--aws-orange);
+            color: #000;
+        }
+        
+        .sidebar-section {
+            margin-bottom: 20px;
+        }
+        
+        .sidebar-section-title {
+            padding: 10px 20px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            color: #666;
+            font-weight: bold;
+        }
+        
+        /* Main Content Styles */
+        .main-content {
+            margin-left: 240px;
+            padding: 20px;
+            min-height: calc(100vh - 100px);
+        }
+        
+        /* Card Styles */
+        .aws-card {
+            background: white;
+            border-radius: 4px;
+            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
+        
+        .card-header {
+            background-color: var(--aws-light-gray);
+            border-bottom: 1px solid #ddd;
+            padding: 12px 15px;
+            font-weight: bold;
+        }
+        
+        .card-body {
+            padding: 15px;
+        }
+        
+        /* Footer Styles */
+        .footer {
+            background-color: var(--aws-light-gray);
+            padding: 15px 20px;
+            margin-left: 240px;
+            border-top: 1px solid #ddd;
+            color: var(--aws-dark-gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Utility Classes */
+        .text-orange {
+            color: var(--aws-orange);
+        }
+        
+        .bg-light-gray {
+            background-color: var(--aws-light-gray);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <nav class="navbar navbar-aws">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">
+                <i class="fas fa-shield-alt"></i> Intelligence Dashboard
+            </a>
+            <div class="d-flex">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-question-circle"></i></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i> User</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+        <div class="sidebar-section">
+            <div class="sidebar-section-title">Main Menu</div>
+            <div class="sidebar-item active">
+                <i class="fas fa-home me-2"></i> Dashboard
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-users me-2"></i> Personnel
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-file-alt me-2"></i> Reports
+            </div>
+        </div>
+        
+        <div class="sidebar-section">
+            <div class="sidebar-section-title">Operations</div>
+            <div class="sidebar-item">
+                <i class="fas fa-bullseye me-2"></i> Targets
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-user-secret me-2"></i> Sources
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-tasks me-2"></i> Operations
+            </div>
+        </div>
+        
+        <div class="sidebar-section">
+            <div class="sidebar-section-title">Management</div>
+            <div class="sidebar-item">
+                <i class="fas fa-building me-2"></i> Departments
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-laptop me-2"></i> Equipment
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-chart-line me-2"></i> Analytics
+            </div>
+        </div>
+        
+        <div class="sidebar-section">
+            <div class="sidebar-section-title">Admin</div>
+            <div class="sidebar-item">
+                <i class="fas fa-cog me-2"></i> Settings
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-history me-2"></i> Audit Logs
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        {% block content %}
+        <!-- Content will be injected here from child templates -->
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6">
+                    Intelligence Management System &copy; 2023
+                </div>
+                <div class="col-md-6 text-end">
+                    <span class="me-3">Region: US East (N. Virginia)</span>
+                    <a href="#" class="text-decoration-none me-3">Help</a>
+                    <a href="#" class="text-decoration-none">Feedback</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

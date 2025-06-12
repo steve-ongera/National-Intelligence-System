@@ -1,0 +1,291 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Dashboard Header -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2><i class="fas fa-tachometer-alt me-2"></i> Intelligence Dashboard</h2>
+        <div class="dropdown">
+            <button class="btn btn-sm btn-outline-secondary dropdown-toggle" type="button" id="dashboardActions" data-bs-toggle="dropdown">
+                <i class="fas fa-cog"></i> Dashboard Actions
+            </button>
+            <ul class="dropdown-menu">
+                <li><a class="dropdown-item" href="#"><i class="fas fa-sync-alt me-2"></i> Refresh</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fas fa-columns me-2"></i> Customize Layout</a></li>
+                <li><a class="dropdown-item" href="#"><i class="fas fa-filter me-2"></i> Apply Filters</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Alert Summary -->
+    <div class="row mb-4">
+        <div class="col-md-12">
+            <div class="aws-card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span><i class="fas fa-exclamation-triangle me-2 text-warning"></i> Alerts Summary</span>
+                    <a href="#" class="btn btn-sm btn-outline-secondary">View All</a>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <div class="alert alert-danger">
+                                <h5 class="alert-heading">3 Critical</h5>
+                                <p class="mb-0">Priority threats requiring immediate action</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="alert alert-warning">
+                                <h5 class="alert-heading">12 High</h5>
+                                <p class="mb-0">Important issues needing attention</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="alert alert-info">
+                                <h5 class="alert-heading">24 Medium</h5>
+                                <p class="mb-0">Items requiring monitoring</p>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="alert alert-success">
+                                <h5 class="alert-heading">45 Low</h5>
+                                <p class="mb-0">Informational items</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Dashboard Grid -->
+    <div class="row">
+        <!-- Left Column -->
+        <div class="col-md-8">
+            <!-- Recent Activity -->
+            <div class="aws-card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-history me-2"></i> Recent Activity
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>User</th>
+                                    <th>Activity</th>
+                                    <th>Details</th>
+                                    <th>Clearance</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>10:23 AM</td>
+                                    <td>Agent Smith</td>
+                                    <td>Created Report</td>
+                                    <td>TS/SCI Threat Assessment</td>
+                                    <td><span class="badge bg-dark">TOP SECRET</span></td>
+                                </tr>
+                                <tr>
+                                    <td>09:45 AM</td>
+                                    <td>Agent Johnson</td>
+                                    <td>Updated Target</td>
+                                    <td>Operation Nightfall</td>
+                                    <td><span class="badge bg-primary">SECRET</span></td>
+                                </tr>
+                                <tr>
+                                    <td>08:12 AM</td>
+                                    <td>Director Lee</td>
+                                    <td>Approved Operation</td>
+                                    <td>Operation Silent Shadow</td>
+                                    <td><span class="badge bg-dark">TOP SECRET</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Yesterday</td>
+                                    <td>Analyst Park</td>
+                                    <td>Added Source</td>
+                                    <td>Source "FALCON"</td>
+                                    <td><span class="badge bg-primary">SECRET</span></td>
+                                </tr>
+                                <tr>
+                                    <td>Yesterday</td>
+                                    <td>Operator Chen</td>
+                                    <td>Filed Incident</td>
+                                    <td>Security Breach Attempt</td>
+                                    <td><span class="badge bg-secondary">CONFIDENTIAL</span></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Operations Status -->
+            <div class="aws-card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span><i class="fas fa-tasks me-2"></i> Active Operations</span>
+                    <div>
+                        <button class="btn btn-sm btn-outline-primary me-2"><i class="fas fa-plus"></i> New</button>
+                        <button class="btn btn-sm btn-outline-secondary"><i class="fas fa-filter"></i> Filter</button>
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-header bg-primary text-white">
+                                    Operation Nightfall
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>Status:</strong> <span class="badge bg-success">Active</span></p>
+                                    <p><strong>Type:</strong> Covert Operation</p>
+                                    <p><strong>Location:</strong> Eastern Europe</p>
+                                    <p><strong>Clearance:</strong> <span class="badge bg-dark">TOP SECRET</span></p>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-header bg-primary text-white">
+                                    Operation Silent Shadow
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>Status:</strong> <span class="badge bg-warning text-dark">Planning</span></p>
+                                    <p><strong>Type:</strong> Intelligence Collection</p>
+                                    <p><strong>Location:</strong> Southeast Asia</p>
+                                    <p><strong>Clearance:</strong> <span class="badge bg-dark">TOP SECRET</span></p>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="card mb-3">
+                                <div class="card-header bg-primary text-white">
+                                    Operation Iron Shield
+                                </div>
+                                <div class="card-body">
+                                    <p><strong>Status:</strong> <span class="badge bg-info">Approved</span></p>
+                                    <p><strong>Type:</strong> Counterintelligence</p>
+                                    <p><strong>Location:</strong> Domestic</p>
+                                    <p><strong>Clearance:</strong> <span class="badge bg-primary">SECRET</span></p>
+                                    <a href="#" class="btn btn-sm btn-outline-primary">Details</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Column -->
+        <div class="col-md-4">
+            <!-- Quick Stats -->
+            <div class="aws-card mb-4">
+                <div class="card-header">
+                    <i class="fas fa-chart-pie me-2"></i> Quick Stats
+                </div>
+                <div class="card-body">
+                    <div class="mb-3">
+                        <h6>Active Personnel <span class="badge bg-primary float-end">142</span></h6>
+                        <div class="progress">
+                            <div class="progress-bar bg-success" role="progressbar" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <h6>Active Sources <span class="badge bg-primary float-end">28</span></h6>
+                        <div class="progress">
+                            <div class="progress-bar bg-info" role="progressbar" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <h6>Pending Reports <span class="badge bg-primary float-end">17</span></h6>
+                        <div class="progress">
+                            <div class="progress-bar bg-warning" role="progressbar" style="width: 45%"></div>
+                        </div>
+                    </div>
+                    <div class="mb-3">
+                        <h6>High Priority Targets <span class="badge bg-primary float-end">9</span></h6>
+                        <div class="progress">
+                            <div class="progress-bar bg-danger" role="progressbar" style="width: 30%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Reports -->
+            <div class="aws-card mb-4">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <span><i class="fas fa-file-alt me-2"></i> Recent Reports</span>
+                    <a href="#" class="btn btn-sm btn-outline-secondary">View All</a>
+                </div>
+                <div class="card-body">
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6>Threat Assessment: Operation Nightfall</h6>
+                                <small class="text-muted">TS/SCI | Updated 2 hours ago</small>
+                            </div>
+                            <span class="badge bg-dark">TOP SECRET</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6>Daily Intelligence Brief</h6>
+                                <small class="text-muted">SECRET | Updated 5 hours ago</small>
+                            </div>
+                            <span class="badge bg-primary">SECRET</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6>Source Evaluation: FALCON</h6>
+                                <small class="text-muted">CONFIDENTIAL | Updated yesterday</small>
+                            </div>
+                            <span class="badge bg-secondary">CONFIDENTIAL</span>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between align-items-center">
+                            <div>
+                                <h6>Equipment Maintenance Report</h6>
+                                <small class="text-muted">UNCLASSIFIED | Updated yesterday</small>
+                            </div>
+                            <span class="badge bg-light text-dark">UNCLASSIFIED</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- System Status -->
+            <div class="aws-card">
+                <div class="card-header">
+                    <i class="fas fa-server me-2"></i> System Status
+                </div>
+                <div class="card-body">
+                    <div class="alert alert-success">
+                        <h6><i class="fas fa-check-circle me-2"></i> All Systems Operational</h6>
+                        <p class="mb-0">No incidents reported in the last 24 hours</p>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-4">
+                            <div class="p-2">
+                                <h3 class="text-success">99.9%</h3>
+                                <small class="text-muted">Uptime</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2">
+                                <h3 class="text-info">42ms</h3>
+                                <small class="text-muted">Avg. Response</small>
+                            </div>
+                        </div>
+                        <div class="col-4">
+                            <div class="p-2">
+                                <h3 class="text-primary">1.2TB</h3>
+                                <small class="text-muted">Data Stored</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
