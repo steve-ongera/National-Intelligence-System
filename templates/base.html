@@ -3,197 +3,362 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Intelligence Dashboard</title>
+    <title>National Intelligence System</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
-            --aws-dark-blue: #232f3e;
-            --aws-orange: #ff9900;
-            --aws-light-gray: #f2f3f3;
-            --aws-dark-gray: #545b64;
+            --gov-dark-blue: #0a2540;
+            --gov-blue: #1a4b8c;
+            --gov-light-blue: #e6f0fa;
+            --gov-accent: #0056b3;
+            --gov-dark-gray: #3d3d3d;
+            --gov-medium-gray: #6c757d;
+            --gov-light-gray: #f8f9fa;
+            --gov-critical: #dc3545;
+            --gov-high: #fd7e14;
+            --gov-medium: #ffc107;
+            --gov-low: #28a745;
         }
         
         body {
-            font-family: 'Amazon Ember', Arial, sans-serif;
-            background-color: #fafafa;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: var(--gov-dark-gray);
+            padding-top: 60px; /* For fixed navbar */
         }
         
-        /* Header Styles */
-        .navbar-aws {
-            background-color: var(--aws-dark-blue);
+        /* Fixed Header Styles */
+        .navbar-gov {
+            background-color: var(--gov-dark-blue);
             height: 60px;
-            padding: 0 20px;
+            padding: 0 1rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1030;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
         
         .navbar-brand {
             color: white;
-            font-weight: bold;
-            font-size: 1.5rem;
+            font-weight: 600;
+            font-size: 1.25rem;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .navbar-brand img {
+            height: 30px;
+            margin-right: 10px;
         }
         
         .nav-link {
-            color: white !important;
+            color: rgba(255,255,255,0.9) !important;
             padding: 0.5rem 1rem;
+            font-size: 0.9rem;
+            transition: all 0.2s;
         }
         
-        /* Sidebar Styles */
+        .nav-link:hover {
+            color: white !important;
+            background-color: rgba(255,255,255,0.1);
+        }
+        
+        .nav-icon {
+            font-size: 1.1rem;
+            vertical-align: middle;
+        }
+        
+        .nav-divider {
+            border-left: 1px solid rgba(255,255,255,0.2);
+            height: 30px;
+            margin: 0 10px;
+        }
+        
+        /* Professional Sidebar */
         .sidebar {
             background-color: white;
-            width: 240px;
-            min-height: calc(100vh - 60px);
-            border-right: 1px solid #ddd;
+            width: 250px;
+            height: calc(100vh - 60px);
             position: fixed;
-            padding-top: 20px;
+            left: 0;
+            top: 60px;
+            border-right: 1px solid #e0e0e0;
+            overflow-y: auto;
+            box-shadow: 1px 0 3px rgba(0,0,0,0.05);
+            z-index: 1020;
         }
         
-        .sidebar-item {
-            padding: 10px 20px;
-            color: var(--aws-dark-gray);
-            cursor: pointer;
-            border-left: 3px solid transparent;
-        }
-        
-        .sidebar-item:hover {
-            background-color: var(--aws-light-gray);
-        }
-        
-        .sidebar-item.active {
-            background-color: #e9f5ff;
-            border-left: 3px solid var(--aws-orange);
-            color: #000;
+        .sidebar-header {
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #eee;
+            background-color: var(--gov-light-blue);
+            font-weight: 600;
+            color: var(--gov-blue);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
         
         .sidebar-section {
-            margin-bottom: 20px;
+            margin-bottom: 1.5rem;
         }
         
         .sidebar-section-title {
-            padding: 10px 20px;
-            font-size: 0.8rem;
+            padding: 0.75rem 1.5rem;
+            font-size: 0.75rem;
             text-transform: uppercase;
-            color: #666;
-            font-weight: bold;
+            color: var(--gov-medium-gray);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+        }
+        
+        .sidebar-item {
+            padding: 0.75rem 1.5rem;
+            color: var(--gov-dark-gray);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            transition: all 0.2s;
+            border-left: 4px solid transparent;
+        }
+        
+        .sidebar-item:hover {
+            background-color: var(--gov-light-blue);
+            color: var(--gov-blue);
+        }
+        
+        .sidebar-item.active {
+            background-color: var(--gov-light-blue);
+            border-left: 4px solid var(--gov-accent);
+            color: var(--gov-blue);
+            font-weight: 500;
+        }
+        
+        .sidebar-item i {
+            width: 24px;
+            text-align: center;
+            margin-right: 12px;
+            font-size: 1rem;
+        }
+        
+        .sidebar-item .badge {
+            margin-left: auto;
+            font-size: 0.65rem;
+            padding: 0.25rem 0.4rem;
         }
         
         /* Main Content Styles */
         .main-content {
-            margin-left: 240px;
-            padding: 20px;
+            margin-left: 250px;
+            padding: 1.5rem;
             min-height: calc(100vh - 100px);
         }
         
-        /* Card Styles */
-        .aws-card {
+        /* Government Card Styles */
+        .gov-card {
             background: white;
             border-radius: 4px;
-            box-shadow: 0 1px 1px rgba(0,0,0,0.1);
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+            margin-bottom: 1.5rem;
+            border: 1px solid #e0e0e0;
         }
         
         .card-header {
-            background-color: var(--aws-light-gray);
-            border-bottom: 1px solid #ddd;
-            padding: 12px 15px;
-            font-weight: bold;
+            background-color: white;
+            border-bottom: 1px solid #e0e0e0;
+            padding: 1rem 1.5rem;
+            font-weight: 600;
+            color: var(--gov-blue);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .card-header .card-actions {
+            display: flex;
+            gap: 0.5rem;
         }
         
         .card-body {
-            padding: 15px;
+            padding: 1.5rem;
         }
         
         /* Footer Styles */
         .footer {
-            background-color: var(--aws-light-gray);
-            padding: 15px 20px;
-            margin-left: 240px;
-            border-top: 1px solid #ddd;
-            color: var(--aws-dark-gray);
-            font-size: 0.9rem;
+            background-color: white;
+            padding: 1rem 1.5rem;
+            margin-left: 250px;
+            border-top: 1px solid #e0e0e0;
+            color: var(--gov-medium-gray);
+            font-size: 0.8rem;
+            position: relative;
+            z-index: 1010;
+        }
+        
+        /* Classification Banner */
+        .classification-banner {
+            background-color: var(--gov-dark-blue);
+            color: white;
+            text-align: center;
+            padding: 0.25rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.5px;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            z-index: 1040;
         }
         
         /* Utility Classes */
-        .text-orange {
-            color: var(--aws-orange);
-        }
+        .text-critical { color: var(--gov-critical); }
+        .text-high { color: var(--gov-high); }
+        .text-medium { color: var(--gov-medium); }
+        .text-low { color: var(--gov-low); }
         
-        .bg-light-gray {
-            background-color: var(--aws-light-gray);
-        }
+        .bg-critical { background-color: var(--gov-critical); }
+        .bg-high { background-color: var(--gov-high); }
+        .bg-medium { background-color: var(--gov-medium); }
+        .bg-low { background-color: var(--gov-low); }
+        
+        .badge-critical { background-color: var(--gov-critical); }
+        .badge-high { background-color: var(--gov-high); }
+        .badge-medium { background-color: var(--gov-medium); }
+        .badge-low { background-color: var(--gov-low); }
     </style>
 </head>
 <body>
-    <!-- Header -->
-    <nav class="navbar navbar-aws">
+    <!-- Fixed Header -->
+    <nav class="navbar navbar-gov navbar-expand">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">
-                <i class="fas fa-shield-alt"></i> Intelligence Dashboard
+                <i class="fas fa-shield-alt nav-icon"></i>
+                <span>National Intelligence System</span>
             </a>
-            <div class="d-flex">
+            
+            <div class="d-flex align-items-center">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-bell"></i></a>
+                        <a class="nav-link" href="#" title="Alerts">
+                            <i class="fas fa-bell nav-icon"></i>
+                            <span class="d-none d-md-inline ms-1">Alerts</span>
+                            <span class="badge bg-critical rounded-pill ms-1">3</span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-question-circle"></i></a>
+                        <a class="nav-link" href="#" title="Messages">
+                            <i class="fas fa-envelope nav-icon"></i>
+                            <span class="d-none d-md-inline ms-1">Messages</span>
+                            <span class="badge bg-primary rounded-pill ms-1">5</span>
+                        </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-user"></i> User</a>
+                        <a class="nav-link" href="#" title="Tasks">
+                            <i class="fas fa-tasks nav-icon"></i>
+                            <span class="d-none d-md-inline ms-1">Tasks</span>
+                        </a>
+                    </li>
+                    <div class="nav-divider d-none d-md-block"></div>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">
+                            <i class="fas fa-user-circle nav-icon"></i>
+                            <span class="d-none d-md-inline ms-1">Director Smith</span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-user me-2"></i> Profile</a></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-cog me-2"></i> Settings</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#"><i class="fas fa-sign-out-alt me-2"></i> Logout</a></li>
+                        </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 
-    <!-- Sidebar -->
+    <!-- Professional Sidebar -->
     <div class="sidebar">
+        <div class="sidebar-header">
+            <i class="fas fa-user-shield me-2"></i> Intelligence Command
+        </div>
+        
         <div class="sidebar-section">
-            <div class="sidebar-section-title">Main Menu</div>
             <div class="sidebar-item active">
-                <i class="fas fa-home me-2"></i> Dashboard
-            </div>
-            <div class="sidebar-item">
-                <i class="fas fa-users me-2"></i> Personnel
-            </div>
-            <div class="sidebar-item">
-                <i class="fas fa-file-alt me-2"></i> Reports
+                <i class="fas fa-tachometer-alt"></i>
+                <span>Dashboard</span>
+                <span class="badge bg-primary">New</span>
             </div>
         </div>
         
         <div class="sidebar-section">
-            <div class="sidebar-section-title">Operations</div>
+            <div class="sidebar-section-title">Intelligence Operations</div>
             <div class="sidebar-item">
-                <i class="fas fa-bullseye me-2"></i> Targets
+                <i class="fas fa-bullseye"></i>
+                <span>Targets</span>
+                <span class="badge bg-high">12</span>
             </div>
             <div class="sidebar-item">
-                <i class="fas fa-user-secret me-2"></i> Sources
+                <i class="fas fa-user-secret"></i>
+                <span>Sources</span>
             </div>
             <div class="sidebar-item">
-                <i class="fas fa-tasks me-2"></i> Operations
-            </div>
-        </div>
-        
-        <div class="sidebar-section">
-            <div class="sidebar-section-title">Management</div>
-            <div class="sidebar-item">
-                <i class="fas fa-building me-2"></i> Departments
+                <i class="fas fa-tasks"></i>
+                <span>Operations</span>
+                <span class="badge bg-medium">3</span>
             </div>
             <div class="sidebar-item">
-                <i class="fas fa-laptop me-2"></i> Equipment
-            </div>
-            <div class="sidebar-item">
-                <i class="fas fa-chart-line me-2"></i> Analytics
+                <i class="fas fa-file-alt"></i>
+                <span>Reports</span>
             </div>
         </div>
         
         <div class="sidebar-section">
-            <div class="sidebar-section-title">Admin</div>
+            <div class="sidebar-section-title">Personnel & Resources</div>
             <div class="sidebar-item">
-                <i class="fas fa-cog me-2"></i> Settings
+                <i class="fas fa-users"></i>
+                <span>Personnel</span>
             </div>
             <div class="sidebar-item">
-                <i class="fas fa-history me-2"></i> Audit Logs
+                <i class="fas fa-building"></i>
+                <span>Departments</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-laptop"></i>
+                <span>Equipment</span>
+            </div>
+        </div>
+        
+        <div class="sidebar-section">
+            <div class="sidebar-section-title">Analysis & Security</div>
+            <div class="sidebar-item">
+                <i class="fas fa-chart-line"></i>
+                <span>Analytics</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-exclamation-triangle"></i>
+                <span>Threats</span>
+                <span class="badge bg-critical">5</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-history"></i>
+                <span>Audit Logs</span>
+            </div>
+        </div>
+        
+        <div class="sidebar-section">
+            <div class="sidebar-section-title">System Administration</div>
+            <div class="sidebar-item">
+                <i class="fas fa-cog"></i>
+                <span>Settings</span>
+            </div>
+            <div class="sidebar-item">
+                <i class="fas fa-key"></i>
+                <span>Security</span>
             </div>
         </div>
     </div>
@@ -208,12 +373,14 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container-fluid">
-            <div class="row">
+            <div class="row align-items-center">
                 <div class="col-md-6">
-                    Intelligence Management System &copy; 2023
+                    <span>National Intelligence System v4.2.1</span>
+                    <span class="text-muted mx-2">|</span>
+                    <span class="text-muted">Last updated: June 15, 2023</span>
                 </div>
-                <div class="col-md-6 text-end">
-                    <span class="me-3">Region: US East (N. Virginia)</span>
+                <div class="col-md-6 text-md-end">
+                    <span class="me-3">Secure Connection <i class="fas fa-lock text-success"></i></span>
                     <a href="#" class="text-decoration-none me-3">Help</a>
                     <a href="#" class="text-decoration-none">Feedback</a>
                 </div>
@@ -221,6 +388,7 @@
         </div>
     </footer>
 
+   
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
