@@ -15,11 +15,11 @@ def login_view(request):
         else:
             messages.error(request, 'Invalid username or password')
 
-    return render(request, 'login.html')
+    return render(request, 'auth/login.html')
 
 @login_required
 def dashboard(request):
-    return render(request, 'dashboard.html', {'user': request.user})
+    return render(request, 'dashboard/dashboard.html', {'user': request.user})
 
 def logout_view(request):
     logout(request)
