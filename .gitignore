@@ -1,0 +1,83 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.pyc
+*.so
+
+# Django DB and settings
+*.sqlite3
+*.db
+.env
+.env.*
+settings_local.py
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv/
+.ENV/
+
+# Logs
+*.log
+logs/
+*.pot
+
+# Media & static
+/media/
+staticfiles/
+static/
+
+# Django migrations (optional)
+**/migrations/*.py
+!**/migrations/__init__.py
+
+# Byte-compiled files
+*.py[cod]
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# macOS
+.DS_Store
+
+# Linux
+*.swp
+*~
+
+# Node (if used with frontend tools)
+node_modules/
+npm-debug.log
+yarn-debug.log
+yarn-error.log
+
+# Coverage reports
+htmlcov/
+.coverage
+.tox/
+.nox/
+coverage.xml
+*.cover
+*.py,cover
+
+# pytest
+.pytest_cache/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+MANIFEST
+
+# Media uploads
+/media/
+uploads/
+
+# Jupyter notebooks
+.ipynb_checkpoints/
