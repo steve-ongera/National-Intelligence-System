@@ -1,6 +1,143 @@
 {% extends "base.html" %}
 
 {% block content %}
+<style>
+/* General Enhancements */
+.aws-card {
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+    border: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.aws-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.12);
+}
+
+.card-header {
+    padding: 1rem 1.25rem;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    font-weight: 600;
+}
+
+/* Alert Summary Cards */
+.alert-summary-card .alert {
+    border-radius: 6px;
+    padding: 1rem;
+    border-left: 4px solid transparent;
+}
+
+.alert-danger {
+    border-left-color: #dc3545 !important;
+}
+
+.alert-warning {
+    border-left-color: #ffc107 !important;
+}
+
+.alert-info {
+    border-left-color: #0dcaf0 !important;
+}
+
+.alert-success {
+    border-left-color: #198754 !important;
+}
+
+/* Table Enhancements */
+.table {
+    font-size: 0.9rem;
+}
+
+.table th {
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+    color: #6c757d;
+    border-top: none;
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 0, 0, 0.02);
+}
+
+/* Operation Cards */
+.operation-card .card-header {
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.operation-card .card-body {
+    padding: 1.25rem;
+}
+
+/* Progress Bars */
+.progress {
+    height: 6px;
+    border-radius: 3px;
+}
+
+/* List Group Items */
+.list-group-item {
+    padding: 1rem;
+    border-left: none;
+    border-right: none;
+}
+
+.list-group-item:first-child {
+    border-top: none;
+}
+
+.list-group-item h6 {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+/* Badges */
+.badge {
+    font-weight: 500;
+    padding: 0.35em 0.65em;
+    font-size: 0.75em;
+    letter-spacing: 0.5px;
+}
+
+/* System Status */
+.system-status-card .alert {
+    border-radius: 6px;
+}
+
+.system-status-card .col-4 {
+    border-right: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.system-status-card .col-4:last-child {
+    border-right: none;
+}
+
+/* Buttons */
+.btn-sm {
+    padding: 0.25rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .alert-summary-card .col-md-3 {
+        margin-bottom: 1rem;
+    }
+    
+    .operation-card .col-md-4 {
+        margin-bottom: 1rem;
+    }
+    
+    .system-status-card .col-4 {
+        margin-bottom: 1rem;
+        border-right: none;
+    }
+}
+</style>
 <div class="container-fluid">
     <!-- Dashboard Header -->
     <div class="d-flex justify-content-between align-items-center mb-4">
