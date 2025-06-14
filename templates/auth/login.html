@@ -9,20 +9,20 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 </head>
-<body>
-    <div class="header-container">
-        
-        <h1>NATIONAL INFORMATION SYSTEM</h1>
-        <img src="{% static 'images/nis-logo.png' %}" alt="NIS Logo" class="logo">
+<body style="margin: 0; padding: 0; font-family: 'Roboto', sans-serif; background-color: #f5f7fa; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+    <div class="header-container" style="text-align: center; margin-bottom: 30px;">
+        <h1 style="font-size: 24px; font-weight: 600; color: #2c3e50; margin-bottom: 5px; letter-spacing: 1px;">NATIONAL INFORMATION SYSTEM</h1>
+        <p style="font-size: 14px; color: #7f8c8d; margin-top: 0; margin-bottom: 20px;">Secure access to national information resources</p>
+        <img src="{% static 'images/nis-logo.png' %}" alt="NIS Logo" class="logo" style="height: 70px; width: auto;">
     </div>
 
-    <div class="login-container">
-        <div class="login-card">
+    <div class="login-container" style="width: 100%; max-width: 500px; padding: 0 20px;">
+        <div class="login-card" style="background-color: white; border-radius: 8px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); padding: 30px;">
             {% if messages %}
             <div class="alert-container">
                 {% for message in messages %}
-                <div class="alert alert-{{ message.tags }}">
-                    <i class="bi bi-exclamation-circle"></i>
+                <div class="alert alert-{{ message.tags }}" style="padding: 12px 15px; background-color: #f8d7da; color: #721c24; border-radius: 4px; margin-bottom: 20px; display: flex; align-items: center; font-size: 14px;">
+                    <i class="bi bi-exclamation-circle" style="margin-right: 10px;"></i>
                     <span>{{ message }}</span>
                 </div>
                 {% endfor %}
@@ -31,39 +31,39 @@
 
             <form method="post" class="login-form">
                 {% csrf_token %}
-                <div class="form-group">
-                    <div class="input-with-icon">
-                        <i class="bi bi-person-fill"></i>
-                        <input type="text" id="username" name="username" placeholder="Username" required>
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <div class="input-with-icon" style="position: relative;">
+                        <i class="bi bi-person-fill" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #7f8c8d; font-size: 16px;"></i>
+                        <input type="text" id="username" name="username" placeholder="Username" required style="width: 100%; padding: 12px 15px 12px 40px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; transition: border-color 0.3s; box-sizing: border-box;">
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <div class="input-with-icon password-input">
-                        <i class="bi bi-lock-fill"></i>
-                        <input type="password" id="password" name="password" placeholder="Password" required>
-                        <button type="button" class="toggle-password" aria-label="Toggle password visibility">
+                <div class="form-group" style="margin-bottom: 20px;">
+                    <div class="input-with-icon password-input" style="position: relative;">
+                        <i class="bi bi-lock-fill" style="position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: #7f8c8d; font-size: 16px;"></i>
+                        <input type="password" id="password" name="password" placeholder="Password" required style="width: 100%; padding: 12px 15px 12px 40px; border: 1px solid #ddd; border-radius: 4px; font-size: 14px; transition: border-color 0.3s; box-sizing: border-box;">
+                        <button type="button" class="toggle-password" aria-label="Toggle password visibility" style="position: absolute; right: 15px; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; color: #7f8c8d; font-size: 16px;">
                             <i class="bi bi-eye"></i>
                         </button>
                     </div>
                 </div>
 
-                <div class="form-options">
-                    <div class="remember-me">
-                        <input type="checkbox" id="remember" name="remember">
-                        <label for="remember">Remember me</label>
+                <div class="form-options" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 25px; font-size: 13px;">
+                    <div class="remember-me" style="display: flex; align-items: center;">
+                        <input type="checkbox" id="remember" name="remember" style="margin-right: 8px;">
+                        <label for="remember" style="color: #7f8c8d;">Remember me</label>
                     </div>
-                    <a href="#" class="forgot-password">Forgot password?</a>
+                    <a href="#" class="forgot-password" style="color: #3498db; text-decoration: none;">Forgot password?</a>
                 </div>
 
-                <button type="submit" class="login-button">
-                    <i class="bi bi-box-arrow-in-right"></i> LOGIN
+                <button type="submit" class="login-button" style="width: 100%; padding: 12px; background-color: #3498db; color: white; border: none; border-radius: 4px; font-size: 15px; font-weight: 500; cursor: pointer; transition: background-color 0.3s; display: flex; align-items: center; justify-content: center;">
+                    <i class="bi bi-box-arrow-in-right" style="margin-right: 8px;"></i> LOGIN
                 </button>
             </form>
 
-            <div class="footer">
-                <p>Don't have an account? <a href="#">Contact Administrator</a></p>
-                <p class="copyright">&copy; 2023 NIS System. All rights reserved.</p>
+            <div class="footer" style="margin-top: 30px; text-align: center; font-size: 13px; color: #7f8c8d;">
+                <p>Don't have an account? <a href="#" style="color: #3498db; text-decoration: none;">Contact Administrator</a></p>
+                <p class="copyright" style="margin-top: 15px;">&copy; 2023 NIS System. All rights reserved.</p>
             </div>
         </div>
     </div>
